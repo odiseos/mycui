@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="chart" />
+        <meta name="title" content="Cui Anime" />
+        <meta name="author" content="Cui Anime" />
+        <meta name="owner" content="Cuinfinity"/>
+        <meta name="description" content="Anime"/>
+
+
+        <title>CUI Anime</title>
+
+        <link rel="icon" href="favicon.png"/>
+
+        <link href="style/style.css" rel="stylesheet" type="text/css" />
+
+        <style>
+            body
+            {
+                background-color: #000;
+            }
+            #universo
+            {
+                width: 100%; float: left; height: 2500px; overflow: hidden;
+            }
+
+            .anime
+            {
+                position: absolute; width: 50px; height: 50px; left: 45%; background-color: #fff; border-radius: 50%;
+            }
+        </style>
+
+        <script type="text/javascript" src="../lib/jquery/jquery-1.10.2.js"> </script>
+        <script type="text/javascript" src="../lib/jquery/timer.js"> </script>
+        <script type="text/javascript" src="../lib/jquery-scrollstop-master/jquery.scrollstop.min.js"> </script>
+        <script type="text/javascript" src="script/cui_scene.js"> </script>
+        <script type="text/javascript" src="script/cui_anime.js"> </script>
+
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+
+                  var a =  new $.cuiScene({
+                        pin: '#universo',
+                        offset: 0,
+                        duracion: 2500,
+                        friccion: 10,
+                        from: {x: 0, y: 50,  scale: 1, rotate: 0, opacidad: 1},
+                        to: {x: 0, y: 2200, scale: 1, rotate: 0, opacidad: 1}
+                    }, '.anime')
+
+                    var a1 =  new $.cuiScene({
+                        pin: '#universo',
+                        offset: 0,
+                        duracion: 2500,
+                        friccion: 20,
+                        from: {x: 0, y: 150,  scale: 1, rotate: 0, opacidad: 1},
+                        to: {x: 0, y: 2300, scale: 1, rotate: 0, opacidad: 1}
+                    }, '.anime1')
+
+                    var a2 =  new $.cuiScene({
+                        pin: '#universo',
+                        offset: 0,
+                        duracion: 2500,
+                        friccion: 30,
+                        from: {x: 0, y: 250,  scale: 1, rotate: 0, opacidad: 1},
+                        to: {x: 0, y: 2400, scale: 1, rotate: 0, opacidad: 1}
+                    }, '.anime2')
+
+                    var a3 =  new $.cuiScene({
+                        pin: '#universo',
+                        offset: 0,
+                        duracion: 2500,
+                        friccion: 30,
+                        from: {x: 0, y: 350,  scale: 1, rotate: 0, opacidad: 1},
+                        to: {x: 0, y: 2500, scale: 1, rotate: 0, opacidad: 1}
+                    }, '.anime3')
+
+                    
+                var anime = new $.cuiAnime({
+                    cuiScenes: [a,a1,a2,a3],
+                    friccion: 30
+                });
+
+             });
+
+        </script>
+
+    </head>
+    <body>
+        <div id="universo">
+            <div class="anime"></div>
+            <div class="anime anime1"></div>
+            <div class="anime anime2"></div>
+            <div class="anime anime3"></div>
+        </div>
+    </body>
+</html>

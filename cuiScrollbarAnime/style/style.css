@@ -1,0 +1,48 @@
+
+body, html
+{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.cuiPin
+{
+    position: relative;  width: 100%; float: left;
+    
+}
+
+.cui_row
+{
+    float: left; width: 100%;
+}
+
+.cui_cajon
+{
+    float: left; width: 50%;
+}
+
+.figure img
+{
+    float: left; width: 51%; margin-top: 25px; position: relative; z-index: 10;
+}
+
+.figure img.i1
+{
+    -moz-transform: translate(5px, 0) rotate(10deg);
+}
+
+.figure img.i2
+{
+    -moz-transform: translate(40%, 0) rotate(-5deg);
+}
+
+.figure img.i3
+{
+    -moz-transform: translate(7px, 0) rotate(5deg);
+}
+
+.figure img.i4
+{
+    -moz-transform: translate(39%, 0) rotate(-10deg);
+}

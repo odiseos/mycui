@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+
+        <title>Cui Chart</title>
+        
+        <link rel="stylesheet" href="style/style.css"/>
+
+        <script type="text/javascript" src="../lib/jquery/jquery-1.10.2.js"> </script>
+        <script type="text/javascript" src="../lib/jquery/timer.js"> </script>
+        <script type="text/javascript" src="script/cuiChartScale.js"> </script>
+        <script type="text/javascript" src="script/room.js"> </script>
+
+
+    </head>
+    <body>
+
+        <div id="capa_seg" style="width: 100%; position: fixed; height: 100%; top: 0; left: 0; z-index: 100; background-color: rgba(33,33,33,.75); padding: 5% 10%; display: none;">
+    <div>
+        <img id="close_seg" src="image/close.png" style="float: right; margin-bottom: 10px; width: 20px; cursor: pointer;" />
+    </div>
+    <iframe  src="" style="width: 100%; float: left; height: 100%; background-color: #000; border: none;">
+
+    </iframe>
+</div>
+
+<div id="room_base" class="cui_row" style="height: 100%; background-color: #313336; padding: 85px 0 5px 0;">
+
+	<div class="cui_lat_der">
+            <form class="cui_row" id="">
+		<span class="cui_span">
+                    Time
+		</span>
+		<div class="cui_select black rounded">
+			<select id="timewait">
+                            <option value="0_10">10s</option>
+                            <option value="0_30">30s</option>
+                            <option value="1_0">60 s</option>
+                            <option value="2_0">2 s</option>
+                            <option value="5_0">5 s</option>
+			</select>
+		</div>
+		<span class="cui_span">
+                    Value
+		</span>
+                <input id="bet_val" class="cui_textbox numeric" type="text" value="50">
+		<span class="cui_span">
+                    Earning
+		</span>
+		<div class="cui_ganancia">
+			<span class="cui_span_money cui_gana">
+			60%
+			</span>
+			<span id ="calc_bet" class="cui_span_por cui_gana">
+			$80
+			</span>
+		</div>
+                <div class="cui_row" style="position: relative; overflow: hidden; margin-top:20px;">
+                    <div id="cuiCall" class="cui_sube">
+			<img src="image/g2.png"/>
+                    </div>
+                    <div id="cuiPut" class="cui_baja">
+                        <img src="image/g1.png"/>
+                    </div>
+
+                    <div id="plusOperacion">
+                        <p>New Operation</p>
+                    </div>
+                </div>
+            </form>
+    </div>
+
+    <div id="cui_center" style="height: 100%; margin-right:160px; margin-left:6px; position: relative;">
+		<div style="float: left; width: 6%; height: 100%; text-align:center; padding-right:0px; z-index: 6; position: relative;">
+			<div id="getHistorial" class="cui_menu_img">
+				<img src="image/historial.png"/><br/>
+				<span>
+					Historial
+				</span>
+			</div>
+                        <div id="getNews" class="cui_menu_img">
+				<img src="image/noticia.png"/><br/>
+				<span>
+					News
+				</span>
+			</div>
+			<div id="getTop" class="cui_menu_img">
+				<img src="image/topplayer.png"/><br/>
+				<span>
+					Top
+				</span>
+			</div>
+			<div id="getSeg" class="cui_menu_img">
+				<img src="image/statistics.png"/><br/>
+				<span>
+                                     Stadistics
+				</span>
+			</div>
+		</div>
+		<div style="float: left; width: 94%; height: 100%;">
+			<div id="cui_chart" style="position: relative; width: 100%; height: 100%; float: left; background-image: url('image/c3.jpg'); background-size: cover;">
+
+                            <div id="cui_selectcurrency" style="position: absolute; padding: 6px 12px; background-color: #fff; z-index: 5; opacity: .9; cursor: pointer;">
+                                <span id="cui_currency" style="float: left; color: #333; font-size: 1.5em;">EUR/USD</span> <img src="image/picon.png" style="margin-top: 14px; margin-left: 5px; float: left; position: relative;" />
+                            </div>
+
+                            <div id="cui_currencybox" style="display: none; width: 300px; background-color: #fff; height: 80%; position: absolute; z-index: 5; top: 44px; opacity: .9; padding: 20px 10px; overflow: auto;">
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;" data-currency="EUR/USD=X">
+                                    <div style="float: left; color: #333;">EUR/USD</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #00f800; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;" data-currency="USD/CAD=X">
+                                    <div style="float: left; color: #333;">USD/CAD</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;" data-currency="AUD/JPY=X">
+                                    <div style="float: left; color: #333;">AUD/JPY</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;" data-currency="AUD/USD=X">
+                                    <div style="float: left; color: #333;">AUD/USD</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">EUR/AUD</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">EUR/CAD</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">GBP/JPY</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">EUR/GBP</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">EUR/JPY</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">GBP/CHF</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">GBP/JPY</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">GBP/USD</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">NZD/USD</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">USD/CHF</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">USD/JPY</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">USD/RUB</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">USD/TRY</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+
+                                <div class="cui_row" style=" background-color: #333; margin: 20px 0; color: #efefef; padding: 5px; overflow: hidden; font-size: 1.3em;" >EMPRESAS</div>
+
+
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;" data-currency="AAPL">
+                                    <div style="float: left; color: #333;">AAPL</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;" data-currency="GOOGL">
+                                    <div style="float: left; color: #333;">GOOGL</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;" data-currency="DOW">
+                                    <div style="float: left; color: #333;">DOW</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">YHOO</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">DAX</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">UKOIL</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">SSRI</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+                                <div class="cui_row cui_pointer" style="padding: 10px; border-bottom: 1px solid #333;">
+                                    <div style="float: left; color: #333;">GOLD</div>
+                                    <div class="cui_ball" style="float: right; width: 15px; height: 15px; background-color: #f80000; border-radius: 50%;"></div>
+                                </div>
+
+                            </div>
+
+                            <div id="previsor" >
+                                <div class="barra">
+                                    <span class="s_put">50%</span>
+                                </div>
+                                <span class="s_call">50%</span>
+                            </div>
+
+			</div>
+		</div>
+
+        <div id="sideInfo">
+            <div class="cui_row">
+                <img id="close_info" src="image/close.png" width="20px" style="float: right; cursor: pointer;" />
+            </div>
+            <div id="loadInfo" class="cui_row" style="text-align: center; margin-top: 50%; position: relative; color: #dcdcdc;">
+                Loading...
+            </div>
+            <div id="contInfo" class="cui_row">
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+
+
+</script>
+
+    </body>
+</html>

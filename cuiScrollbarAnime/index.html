@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="es">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1" />
+
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content="chart" />
+        <meta name="title" content="Cui Anime" />
+        <meta name="author" content="Cui Anime" />
+        <meta name="owner" content="Cuinfinity"/>
+        <meta name="description" content="Anime"/>
+
+
+        <title>CUI Anime</title>
+
+        <link rel="icon" href="favicon.png"/>
+
+        <link href="style/style.css" rel="stylesheet" type="text/css" />
+
+        <style>
+            body
+            {
+                background-color: #000;
+            }
+            #universo
+            {
+                width: 100%; float: left; height: 2500px; overflow: hidden;
+            }
+		.bone {
+		   position: absolute;
+		   display: block;
+		   color: #fff;
+		   width: 50px;
+		   height: 20px;
+		   background-image: url('images/bone.png');
+		   background-repeat: no-repeat;
+		}
+		
+		.dog {
+		   position: fixed;
+		   display: block;
+		   color: #fff;
+		   width: 200px;
+		   height: 191px;
+		   left: 40%; 
+		   top: 40%;
+		   background-image: url('images/dog.png');
+		   background-repeat: no-repeat;
+		   z-index: 50;
+		}
+        </style>
+
+        <script type="text/javascript" src="../lib/jquery/jquery-1.10.2.js"> </script>
+        <script type="text/javascript" src="../lib/jquery/timer.js"> </script>
+        <script type="text/javascript" src="../lib/jquery-scrollstop-master/jquery.scrollstop.min.js"> </script>
+        <script type="text/javascript" src="script/cui_scene.js"> </script>
+        <script type="text/javascript" src="script/cui_anime.js"> </script>
+
+        <script type="text/javascript">
+
+            $(document).ready(function() {
+
+                var n=100;
+                var windowWidth = $(window).width();
+                var arr = new Array();
+                for(var i=0; i<n; i++) {
+                        var top = Rnd(0, 2500);
+                        var left = Rnd(0, windowWidth);
+                        var x = Rnd(-500, windowWidth+500);
+                        var y = Rnd(-500, 3000);
+                        var r = Rnd(-600, 600);
+                        var s = Rnd(0.1, 2.0);
+						var zi = Rnd(1, n);
+                        var op = Math.random();
+                        $("#universo").append('<div id="s_'+i+'" class="bone" style="top:' + top + 'px; left:' + left + 'px; color: red; z-index: '+zi+'"></div>');
+                        arr.push(new $.cuiScene({
+                                        pin: '#universo',
+                                        offset: Math.max(document.documentElement.clientHeight, window.innerHeight || 0),
+                                        duracion: 2500,
+                                        from: {x: 0, y: 0,  scale: 1, rotate: 0, opacidad: 1},
+                                        to: {x: x, y: y, scale: s, rotate: r, opacidad: op}
+                                    }, '#s_'+i));
+                }
+                var anime = new $.cuiAnime({
+                    cuiScenes: arr,
+                    friccion: 30
+                });
+
+
+                function Rnd(min, max)
+                {
+                    return Math.ceil((Math.random()*(max-min))+min);
+                }
+             });
+
+        </script>
+
+    </head>
+    <body>
+        <div class="cui_row" style="text-align: center; color: #fff; font-size: 35px; font-family: Segoe UI;">
+            cui Scroll Anime <span style="font-size: 20px;">(Smooth parallax animations on vertical page scrolling)</span>
+        </div>
+        <div id="universo">
+            <div class="dog"></div>
+        </div>
+    </body>
+</html>
